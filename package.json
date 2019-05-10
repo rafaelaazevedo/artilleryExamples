@@ -1,0 +1,26 @@
+{
+  "name": "artilleryExamples",
+  "version": "1.0.0",
+  "private": false,
+  "scripts": {
+    "endurance:qa": "$(npm bin)/artillery run -e qa endurance-tests.yml -o endurance-tests.json ; $(npm bin)/artillery report endurance-tests.json",
+    "endurance:dev": "$(npm bin)/artillery run -e dev endurance-tests.yml -o endurance-tests.json ; $(npm bin)/artillery report endurance-tests.json",
+    "load:qa": "$(npm bin)/artillery run -e qa load-tests.yml -o load-tests.json ; $(npm bin)/artillery report load-tests.json",
+    "load:dev": "$(npm bin)/artillery run -e dev load-tests.yml -o load-tests.json ; $(npm bin)/artillery report load-tests.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rafaelaazevedo/artilleryExamples.git"
+  },
+  "author": "Rafaela Azevedo",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/rafaelaazevedo/artilleryExamples/issues"
+  },
+  "devDependencies": {
+  },
+  "dependencies": {
+    "artillery": "^1.6.0-27",
+    "artillery-plugin-expect": "^1.2.0"
+  }
+}

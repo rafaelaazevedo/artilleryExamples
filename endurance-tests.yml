@@ -1,0 +1,67 @@
+  config:
+    target: 'https://YOUR-HOST-HERE'
+    processor: "helpers/pre-request.js"
+    timeout: 3
+    ensure:
+      p95: 1000
+    plugins:
+      expect: {}
+    environments:
+      qa:
+        target: "https://YOUR-HOST-HERE-QA-ENV"
+        phases:
+          - duration: 120
+            arrivalRate: 0
+            rampTo: 1
+            name: "Warm up the application"
+          - duration: 3600
+            arrivalCount: 120
+            name: "Sustained max load 1 every 30 seconds"
+      dev:
+        target: "https://YOUR-HOST-HERE-DEV-ENV"
+        phases:
+          - duration: 120
+            arrivalRate: 0
+            rampTo: 1
+            name: "Warm up the application"
+          - duration: 3600
+            arrivalCount: 120
+            name: "Sustained max load 1 every 30 seconds"
+    defaults:
+      headers:
+        content-type: "application/json"
+  scenarios:
+    - name: "Send User Data"
+      flow:
+      - function: "generateRandomData"
+      - post:
+          headers:
+            uuid: "{{ uuid }}"
+          url: "/PATH-HERE"
+          json:
+            name: "{{ name }}"
+          expect:
+            - statusCode: 200
+      - log: "Sent name: {{ name }} request to /PATH-HERE"
+      - think: 30
+      - post:
+          headers:
+            uuid: "{{ uuid }}"
+          url: "/PATH-HERE"
+          json:
+            name: "{{ mobile }}"
+          expect:
+            - statusCode: 200
+      - log: "Sent mobile: {{ mobile }} request to /PATH-HERE"
+    - name: "Send email User Data"
+      flow:
+      - function: "generateRandomData"
+      - post:
+          headers:
+            uuid: "{{ uuid }}"
+          url: "/PATH-HERE"
+          json:
+            email: "{{ email }}"
+          expect:
+            - statusCode: 200
+      - log: "Sent email: {{ email }} request to /PATH-HERE"
