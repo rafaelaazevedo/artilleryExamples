@@ -20,7 +20,7 @@ node {
     wrap([$class: 'AnsiColorBuildWrapper']) {
         stage('Performance Tests') {
             echo "Running Performance Tests on ${ENVIRONMENT}"
-            sh "kubectl run performance-tests -i --rm --namespace=${ENVIRONMENT} --restart=Never --image=${imageRepo}:latest --image-pull-policy=Always -- endurance:${ENVIRONMENT} | tee report"
+            sh "kubectl run performance-tests -i --rm --namespace=${ENVIRONMENT} --restart=Never --image=${imageRepo}:latest --image-pull-policy=Always -- endurance:jenkins:${ENVIRONMENT} | tee report"
             def report = readFile "report"
             def update = report.substring(report.indexOf('<html>'), report.indexOf('</html>'))
             writeFile file: "${workspace}/endurance-tests.html", text: update

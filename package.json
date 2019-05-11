@@ -6,7 +6,8 @@
     "endurance:qa": "$(npm bin)/artillery run -e qa endurance-tests.yml -o endurance-tests.json ; $(npm bin)/artillery report endurance-tests.json",
     "endurance:dev": "$(npm bin)/artillery run -e dev endurance-tests.yml -o endurance-tests.json ; $(npm bin)/artillery report endurance-tests.json",
     "load:qa": "$(npm bin)/artillery run -e qa load-tests.yml -o load-tests.json ; $(npm bin)/artillery report load-tests.json",
-    "load:dev": "$(npm bin)/artillery run -e dev load-tests.yml -o load-tests.json ; $(npm bin)/artillery report load-tests.json"
+    "load:dev": "$(npm bin)/artillery run -e dev load-tests.yml -o load-tests.json ; $(npm bin)/artillery report load-tests.json",
+    "endurance:jenkins:qa": "$(npm bin)/artillery run -e qa endurance-tests.yml -o endurance-tests.json ; $(npm bin)/artillery report endurance-tests.json; cat endurance-tests.json.html"
   },
   "repository": {
     "type": "git",
