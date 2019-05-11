@@ -18,6 +18,7 @@
     "url": "https://github.com/rafaelaazevedo/artilleryExamples/issues"
   },
   "devDependencies": {
+    "faker": "^4.1.0"
   },
   "dependencies": {
     "artillery": "^1.6.0-27",
