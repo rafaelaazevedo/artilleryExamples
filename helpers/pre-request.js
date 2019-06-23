@@ -5,13 +5,9 @@ module.exports = {
 }
 
 function generateRandomData (userContext, events, done) {
-  const name = `${Faker.name.firstName()} ${Faker.name.lastName()}`
-  const uuid = Faker.random.uuid()
-  const mobile = `+44 0 ${Faker.random.number({min: 1000000, max: 9999999})}`
-  const email = Faker.internet.email()
-  userContext.vars.name = `${name} PerformanceTests`
-  userContext.vars.mobile = mobile
-  userContext.vars.uuid = uuid
-  userContext.vars.email = email
+  userContext.vars.name = `${Faker.name.firstName()} ${Faker.name.lastName()} PerformanceTests`
+  userContext.vars.mobile = `+44 0 ${Faker.random.number({min: 1000000, max: 9999999})}`
+  userContext.vars.uuid = Faker.random.uuid()
+  userContext.vars.email = Faker.internet.email()
   return done()
 }
